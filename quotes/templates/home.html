@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br/>
+
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
+{% if api %}
+    {% if api == 'Error...' %}
+        There was a problem with your ticker symbol... Please, try again...
+    {% else %}
+
+        <h1>{{ api.companyName }} - {{ api.symbol }} {{ api.primaryExchange }}</h1>
+        Price: {{ api.latestPrice }} {{ api.currency }} {{ api.change }} {{ api.changePercent }} <br/>
+        Previous Close: {{ api.previousClose }} {{ api.currency }}<br/>
+        Open - Close: {{ api.open }} - {{ api.close }}<br/>
+        Day's Range: {{ api.low }} - {{ api.high }}<br/>
+        52 Week Range: {{ api.week52Low }} - {{ api.week52High }}<br/>
+        YTD Change: {{ api.ytdChange }}
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}
